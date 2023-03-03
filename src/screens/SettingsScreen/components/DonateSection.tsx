@@ -32,7 +32,7 @@ export function DonateSection() {
   }, []);
 
   const handleToGithub = useCallback(() => {
-    Linking.openURL('https://github.com/luoxuhai/NightVision');
+    Linking.openURL('https://github.com/luoxuhai/AppLocker');
   }, []);
 
   return (

@@ -1,12 +1,13 @@
 import './locales';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { SafeAreaProvider, initialWindowMetrics } from 'react-native-safe-area-context';
 import { observer } from 'mobx-react-lite';
 
 import { AppNavigator, useNavigationPersistence, NAVIGATION_PERSISTENCE_KEY } from './navigators';
 import * as storage from '@/utils/storage';
 import { useInitialRootStore } from '@/models';
+import { requestAuthorization } from './lib/ScreenTime';
 
 const App = observer(() => {
   const {
@@ -16,6 +17,10 @@ const App = observer(() => {
   } = useNavigationPersistence(storage, NAVIGATION_PERSISTENCE_KEY);
 
   const { rehydrated } = useInitialRootStore();
+
+  useEffect(() => {
+    requestAuthorization();
+  }, []);
 
   const isReay = rehydrated && isNavigationStateRestored;
 

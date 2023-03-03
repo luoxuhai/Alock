@@ -40,7 +40,7 @@ const zh = {
       success: '感谢您的捐助',
       fail: '捐助失败',
       title: '请我喝咖啡（捐助）',
-      subtitle: '支持我们开发更多免费好用的 App',
+      subtitle: '支持我开发更多免费好用的 App',
     },
     openSource: {
       title: '该 APP 已开源，欢迎 Star 和 PR 👉',

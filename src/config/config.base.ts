@@ -26,7 +26,7 @@ const BaseConfig: IBaseConfig = {
   persistNavigation: 'dev',
 
   appId,
-  productId: 'net.darkce.nvd.donate_1',
+  productId: 'net.darkce.app_locker.donate_1',
   email: 'darkce97@gmail.com',
 
   appStoreUrl: {

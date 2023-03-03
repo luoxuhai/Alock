@@ -17,33 +17,45 @@ import { i18n, SupportedLanguage, t } from '@/locales';
 
 const AppIcon = require('@/assets/app-icon.png');
 
-function openRecommendAppStore() {
-  Linking.openURL(
-    i18n.language === SupportedLanguage.ZH
-      ? 'https://apps.apple.com/cn/app/id1597534147'
-      : 'https://apps.apple.com/app/id1597534147',
-  );
-}
+const appList = [
+  {
+    name: t('settingsScreen.recommend.appName'),
+    icon: AppIcon,
+    description: t('settingsScreen.recommend.desc'),
+    url:
+      i18n.language === SupportedLanguage.ZH
+        ? 'https://apps.apple.com/cn/app/id1597534147'
+        : 'https://apps.apple.com/app/id1597534147',
+  },
+];
 
 export function AppPromoteSection() {
   return (
     <ListSection headerText={t('settingsScreen.recommend.title')}>
-      <ListCell style={$recommend} bottomSeparator={false} onPress={openRecommendAppStore}>
-        <Image style={$appIcon} source={AppIcon} />
-        <View style={{ flex: 1 }}>
-          <Text style={[human.body, $appName]}>{t('settingsScreen.recommend.appName')}</Text>
-          <Text style={[human.subhead, $desc]}>{t('settingsScreen.recommend.desc')}</Text>
-        </View>
-        <SFSymbol
-          style={{
-            width: 30,
-            height: 30,
-          }}
-          name="icloud.and.arrow.down"
-          weight="medium"
-          color={PlatformColor('systemBlue')}
-        />
-      </ListCell>
+      {appList.map((app, index) => {
+        const bottomSeparator = index !== appList.length - 1;
+        return (
+          <ListCell
+            style={$recommend}
+            bottomSeparator={bottomSeparator}
+            onPress={() => {
+              Linking.openURL(app.url);
+            }}
+          >
+            <Image style={$appIcon} source={app.icon} />
+            <View style={$body}>
+              <Text style={[human.body, $appName]}>{app.name}</Text>
+              <Text style={[human.subhead, $desc]}>{app.description}</Text>
+            </View>
+            <SFSymbol
+              style={$downIcon}
+              name="icloud.and.arrow.down"
+              weight="medium"
+              color={PlatformColor('systemBlue')}
+            />
+          </ListCell>
+        );
+      })}
     </ListSection>
   );
 }
@@ -69,4 +81,13 @@ const $appName: TextStyle = {
 
 const $desc: TextStyle = {
   color: PlatformColor('secondaryLabel'),
+};
+
+const $body: ViewStyle = {
+  flex: 1,
+};
+
+const $downIcon: ViewStyle = {
+  width: 30,
+  height: 30,
 };

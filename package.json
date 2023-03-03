@@ -12,6 +12,7 @@
     "postinstall": "node ./scripts/postInstall"
   },
   "dependencies": {
+    "@react-native-community/blur": "^4.3.0",
     "@react-native-library/overlay": "^0.1.0",
     "@react-navigation/native": "^6.1.4",
     "@react-navigation/native-stack": "^6.9.10",
