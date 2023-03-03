@@ -12,6 +12,11 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		35DDE9C929B17A7100C885AB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 35DDE9CB29B17A7100C885AB /* InfoPlist.strings */; };
+		35DDE9E129B233DC00C885AB /* RNManagedSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35DDE9E029B233DC00C885AB /* RNManagedSettings.swift */; };
+		35DDE9E329B233E500C885AB /* RNManagedSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 35DDE9E229B233E500C885AB /* RNManagedSettings.m */; };
+		35DDE9E729B2347000C885AB /* RNFamilyActivityPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35DDE9E629B2347000C885AB /* RNFamilyActivityPicker.swift */; };
+		35DDE9E929B2349800C885AB /* RNFamilyActivityPickerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 35DDE9E829B2349800C885AB /* RNFamilyActivityPickerManager.m */; };
+		35DDE9EB29B234B700C885AB /* RNFamilyActivityPickerProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35DDE9EA29B234B700C885AB /* RNFamilyActivityPickerProxy.swift */; };
 		64AE6F9C1AC5109014C9CF33 /* libPods-AppLocker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF70B864C1DCB899481E06AE /* libPods-AppLocker.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		9F6B67CF59A3BC94CC022BDE /* libPods-AppLocker-AppLockerTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F4287CEF3B29A0309386645 /* libPods-AppLocker-AppLockerTests.a */; };
@@ -41,6 +46,13 @@
 		3570B2D329A1EC91000EBDC6 /* Boilerplate-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Boilerplate-Bridging-Header.h"; sourceTree = "<group>"; };
 		35DDE9CA29B17A7100C885AB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		35DDE9CC29B17A7600C885AB /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		35DDE9E029B233DC00C885AB /* RNManagedSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNManagedSettings.swift; sourceTree = "<group>"; };
+		35DDE9E229B233E500C885AB /* RNManagedSettings.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNManagedSettings.m; sourceTree = "<group>"; };
+		35DDE9E429B2342800C885AB /* AppLocker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AppLocker.entitlements; sourceTree = "<group>"; };
+		35DDE9E529B2344C00C885AB /* Defines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Defines.h; sourceTree = "<group>"; };
+		35DDE9E629B2347000C885AB /* RNFamilyActivityPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNFamilyActivityPicker.swift; sourceTree = "<group>"; };
+		35DDE9E829B2349800C885AB /* RNFamilyActivityPickerManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNFamilyActivityPickerManager.m; sourceTree = "<group>"; };
+		35DDE9EA29B234B700C885AB /* RNFamilyActivityPickerProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNFamilyActivityPickerProxy.swift; sourceTree = "<group>"; };
 		3B4392A12AC88292D35C810B /* Pods-Boilerplate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Boilerplate.debug.xcconfig"; path = "Target Support Files/Pods-Boilerplate/Pods-Boilerplate.debug.xcconfig"; sourceTree = "<group>"; };
 		44759728CAF70A9BFFC388FB /* Pods-AppLocker-AppLockerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppLocker-AppLockerTests.debug.xcconfig"; path = "Target Support Files/Pods-AppLocker-AppLockerTests/Pods-AppLocker-AppLockerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		4F4287CEF3B29A0309386645 /* libPods-AppLocker-AppLockerTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AppLocker-AppLockerTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -94,6 +106,8 @@
 		13B07FAE1A68108700A75B9A /* Boilerplate */ = {
 			isa = PBXGroup;
 			children = (
+				35DDE9DF29B233CB00C885AB /* RNManagedSettings */,
+				35DDE9DD29B233AF00C885AB /* RNFamilyActivityPicker */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -116,6 +130,26 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		35DDE9DD29B233AF00C885AB /* RNFamilyActivityPicker */ = {
+			isa = PBXGroup;
+			children = (
+				35DDE9E529B2344C00C885AB /* Defines.h */,
+				35DDE9E829B2349800C885AB /* RNFamilyActivityPickerManager.m */,
+				35DDE9EA29B234B700C885AB /* RNFamilyActivityPickerProxy.swift */,
+				35DDE9E629B2347000C885AB /* RNFamilyActivityPicker.swift */,
+			);
+			path = RNFamilyActivityPicker;
+			sourceTree = "<group>";
+		};
+		35DDE9DF29B233CB00C885AB /* RNManagedSettings */ = {
+			isa = PBXGroup;
+			children = (
+				35DDE9E029B233DC00C885AB /* RNManagedSettings.swift */,
+				35DDE9E229B233E500C885AB /* RNManagedSettings.m */,
+			);
+			path = RNManagedSettings;
+			sourceTree = "<group>";
+		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
@@ -126,6 +160,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				35DDE9E429B2342800C885AB /* AppLocker.entitlements */,
 				13B07FAE1A68108700A75B9A /* Boilerplate */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* BoilerplateTests */,
@@ -428,8 +463,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35DDE9EB29B234B700C885AB /* RNFamilyActivityPickerProxy.swift in Sources */,
+				35DDE9E929B2349800C885AB /* RNFamilyActivityPickerManager.m in Sources */,
+				35DDE9E329B233E500C885AB /* RNManagedSettings.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				35DDE9E129B233DC00C885AB /* RNManagedSettings.swift in Sources */,
+				35DDE9E729B2347000C885AB /* RNFamilyActivityPicker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -460,6 +500,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 44759728CAF70A9BFFC388FB /* Pods-AppLocker-AppLockerTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -487,6 +528,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 226411F51AAF1DDF95F547CC /* Pods-AppLocker-AppLockerTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = BoilerplateTests/Info.plist;
@@ -513,6 +555,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = AppLocker.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = MH9G89WBAL;
 				ENABLE_BITCODE = NO;
@@ -547,6 +590,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = AppLocker.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = MH9G89WBAL;
 				INFOPLIST_FILE = Boilerplate/Info.plist;
