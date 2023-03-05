@@ -8,6 +8,8 @@ interface BottomActionBarProps {
   onPressSettings: () => void;
 }
 
+export const BottomActionBarPaddingBottom = Device.isPad ? 50 : 20;
+
 export function BottomActionBar(props: BottomActionBarProps) {
   const safeAreaInsets = useSafeAreaInsets();
 
@@ -27,7 +29,7 @@ const $bottomContainer: ViewStyle = {
   position: 'absolute',
   zIndex: 1,
   width: '100%',
-  paddingBottom: Device.isPad ? 50 : 20,
+  paddingBottom: BottomActionBarPaddingBottom,
   flexDirection: 'row',
   alignItems: 'center',
   justifyContent: 'space-between',

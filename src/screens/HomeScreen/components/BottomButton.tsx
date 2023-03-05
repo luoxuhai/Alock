@@ -18,6 +18,8 @@ interface BottomButtonProps {
   onPress: () => void;
 }
 
+export const BottomButtonHeight = 50;
+
 export const BottomButton = observer((props: BottomButtonProps) => {
   const isDark = useColorScheme() === 'dark';
 
@@ -38,6 +40,6 @@ const $container: ViewStyle = {
   justifyContent: 'center',
   alignItems: 'center',
   width: 86,
-  height: 50,
+  height: BottomButtonHeight,
   overflow: 'hidden',
 };

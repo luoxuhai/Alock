@@ -2,11 +2,11 @@ import { useCallback, useEffect, useState } from 'react';
 import { Alert, PlatformColor, Switch, TextStyle, Text, ViewStyle } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { observer } from 'mobx-react-lite';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { AppStackParamList } from '@/navigators';
 import { t } from '@/locales';
-import { BottomActionBar } from './components/BottomActionBar';
+import { BottomActionBar, BottomActionBarPaddingBottom } from './components/BottomActionBar';
 import { ListCell, ListSection, SettingsIcon } from '@/components';
 import {
   clearBlockedApplications,
@@ -17,10 +17,12 @@ import {
 import { useStores } from '@/models';
 import { color } from '@/theme';
 import { human } from 'react-native-typography';
+import { BottomButtonHeight } from './components/BottomButton';
 
 export const HomeScreen = observer((props: NativeStackScreenProps<AppStackParamList, 'Home'>) => {
   const { settingsStore } = useStores();
   const [approved, setApproved] = useState(false);
+  const safeAreaInsets = useSafeAreaInsets();
 
   useEffect(() => {
     if (!settingsStore.hideAppEnabled) {
@@ -97,12 +99,14 @@ export const HomeScreen = observer((props: NativeStackScreenProps<AppStackParamL
           bottomSeparator={false}
         />
       </ListSection>
-      <ListSection headerText={t('homeScreen.applicationPicker.title')}>
+      <ListSection headerText={t('homeScreen.applicationPicker.title')} style={$appPickerSection}>
         {approved ? (
-          <FamilyActivityPicker
-            style={[$familyActivityPicker]}
-            onActivityChange={settingsStore.setSelectedAppCount}
-          />
+          <ListCell style={[$appPickerCell]}>
+            <FamilyActivityPicker
+              style={$familyActivityPicker}
+              onActivityChange={settingsStore.setSelectedAppCount}
+            />
+          </ListCell>
         ) : (
           <ListCell
             text={t('homeScreen.applicationPicker.permission.button')}
@@ -131,9 +135,19 @@ const $container: ViewStyle = {
   paddingHorizontal: 20,
 };
 
-const $familyActivityPicker: TextStyle = {
-  height: 500,
+const $appPickerSection: ViewStyle = {
   flex: 1,
+  paddingBottom: BottomActionBarPaddingBottom + BottomButtonHeight + 25,
+};
+
+const $appPickerCell: ViewStyle = {
+  marginHorizontal: -20,
+  height: '100%',
+};
+
+const $familyActivityPicker: ViewStyle = {
+  width: '100%',
+  height: '100%',
 };
 
 const $count: TextStyle = {
