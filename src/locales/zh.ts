@@ -13,16 +13,32 @@ const zh = {
     close: '关闭',
     done: '完成',
     share: '分享',
+    appName: 'Alock',
   },
   homeScreen: {
     hello: '你好！',
+    hideAppEnabled: '开启隐藏',
+    count: '已选择的App个数',
+    applicationPicker: {
+      title: '选择 App',
+      permission: {
+        title: '授予权限',
+        message: '请授予屏幕使用时间访问限制，才能正常使用该功能',
+        button: '授予屏幕使用时间权限',
+      },
+    },
   },
-  appLockScreen: {},
+  appLockScreen: {
+    unlockTip: 'App 已锁定，点击图标解锁',
+    touchID: '指纹',
+    faceID: '面容',
+  },
   settingsScreen: {
     title: '设置',
     version: '版本',
     connect: '联系开发者',
     goodReview: '给个5星好评',
+    share: '分享 App',
     recommend: {
       title: '我的更多 App',
       appName: '隐私盒子',
@@ -33,7 +49,8 @@ const zh = {
     userAgreement: '用户协议',
     security: {
       title: '安全设置',
-      lock: '{{type}} 解锁',
+      lock: '使用{{type}}解锁',
+      tip: '开启后，App 进入后台时自动锁定',
     },
     donate: {
       purchasing: '支付中',
@@ -46,8 +63,9 @@ const zh = {
       title: '该 APP 已开源，欢迎 Star 和 PR 👉',
     },
   },
+
   permissionManager: {
-    camera: '相机',
+    faceID: '面容',
     unavailable: '{{permission}}功能不可用',
     blocked: '请前往设置授予{{permissions}}权限，才能正常使用该功能',
     openSettings: '打开设置',

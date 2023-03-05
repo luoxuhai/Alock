@@ -1,2 +1,2 @@
-CFBundleDisplayName = "App Locker";
-NSFaceIDUsageDescription = "App会在您使用面容解锁功能时，访问您的面容ID权限，为了快速解锁";
+CFBundleDisplayName = "Alock";
+NSFaceIDUsageDescription = "会在您使用面容解锁功能时，访问您的面容ID权限，为了快速解锁";

@@ -1,20 +1,42 @@
-#import <React/RCTBridgeModule.h>
+#import <Foundation/Foundation.h>
+#import "React/RCTViewManager.h"
+#import "React/RCTComponentEvent.h"
+#import "Defines.h"
+#import "AppLocker-Swift.h"
 
-@interface RCT_EXTERN_MODULE(RNManagedSettings, NSObject)
+@interface RNFamilyActivityPickerManager : RCTViewManager
+@end
 
-RCT_EXTERN_METHOD(setBlockedApplications:(RCTPromiseResolveBlock)resolve
-withRejecter:(RCTPromiseRejectBlock)reject)
+@implementation RNFamilyActivityPickerManager
 
-RCT_EXTERN_METHOD(clearBlockedApplications:(RCTPromiseResolveBlock)resolve
-withRejecter:(RCTPromiseRejectBlock)reject)
+RCT_EXPORT_MODULE()
 
-RCT_EXTERN_METHOD(requestAuthorization:(RCTPromiseResolveBlock)resolve
-withRejecter:(RCTPromiseRejectBlock)reject)
++ (BOOL)requiresMainQueueSetup
+{
+  return YES;
+}
 
-RCT_EXTERN_METHOD(getBlockedApplicationsCount:(RCTPromiseResolveBlock)resolve
-withRejecter:(RCTPromiseRejectBlock)reject)
+RCT_CUSTOM_SWIFTUI_PROPERTY(headerText, NSString, RNFamilyActivityPickerProxy) {
+  return [RCTConvert NSString:json] ?: @"";
+}
 
-RCT_EXTERN_METHOD(getAuthorizationStatus:(RCTPromiseResolveBlock)resolve
-withRejecter:(RCTPromiseRejectBlock)reject)
+RCT_CUSTOM_SWIFTUI_PROPERTY(footerText, NSString, RNFamilyActivityPickerProxy) {
+  return [RCTConvert NSString:json] ?: @"";
+}
+
+RCT_EXPORT_SWIFTUI_CALLBACK(onActivityChange, RCTDirectEventBlock, RNFamilyActivityPickerProxy)
+
+- (UIView *)view {
+  if (@available(iOS 15.0, *)) {
+    RNFamilyActivityPickerProxy *proxy = [[RNFamilyActivityPickerProxy alloc] init];
+    UIView *view = [proxy view];
+    NSMutableDictionary *storage = [RNFamilyActivityPickerProxy storage];
+    storage[[NSValue valueWithNonretainedObject:view]] = proxy;
+    return view;
+  } else {
+    return nil;
+  }
+}
 
 @end
+  

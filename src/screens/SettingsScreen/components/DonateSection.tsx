@@ -57,11 +57,11 @@ export function DonateSection() {
           )}
         </View>
       </ListCell>
-      <ListCell
+      {/* <ListCell
         text={t('settingsScreen.openSource.title')}
         bottomSeparator={false}
         onPress={handleToGithub}
-      />
+      /> */}
     </ListSection>
   );
 }

@@ -35,13 +35,13 @@ const BaseConfig: IBaseConfig = {
   },
 
   privacyPolicy: {
-    zh_cn: 'https://zh-cn/privacy-policy',
-    en_us: 'https://en-us/privacy-policy',
+    zh_cn: 'https://alock-web.netlify.app/zh-cn/privacy-policy',
+    en_us: 'https://alock-web.netlify.app/en-us/privacy-policy',
   },
 
   userAgreement: {
-    zh_cn: 'https://zh-cn/user-agreement',
-    en_us: 'https://en-us/user-agreement',
+    zh_cn: 'https://alock-web.netlify.app/zh-cn/user-agreement',
+    en_us: 'https://alock-web.netlify.app/en-us/user-agreement',
   },
 };
 

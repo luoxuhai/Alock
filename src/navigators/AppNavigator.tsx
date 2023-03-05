@@ -5,6 +5,9 @@ import { observer } from 'mobx-react-lite';
 
 import { HomeScreen, SettingsScreen, AppLockScreen } from '@/screens';
 import { t } from '@/locales';
+import { useMemo } from 'react';
+import { useStores } from '@/models';
+import { color } from '@/theme';
 
 export type AppStackParamList = {
   Home: undefined;
@@ -21,9 +24,21 @@ const Stack = createNativeStackNavigator<AppStackParamList>();
 
 const AppStack = observer(function AppStack() {
   const isDark = useColorScheme() === 'dark';
+  const { settingsStore } = useStores();
+
+  const backgroundColor = useMemo(
+    () => (isDark ? PlatformColor('systemBackground') : PlatformColor('secondarySystemBackground')),
+    [isDark],
+  );
+
+  const initialRouteName = useMemo(
+    () => (settingsStore.appLockEnabled ? 'AppLock' : 'Home'),
+    [settingsStore.appLockEnabled],
+  );
 
   return (
     <Stack.Navigator
+      initialRouteName={initialRouteName}
       screenOptions={{
         headerBlurEffect: isDark ? 'systemMaterialDark' : 'systemMaterialLight',
         headerTransparent: true,
@@ -32,7 +47,19 @@ const AppStack = observer(function AppStack() {
       <Stack.Screen
         name="Home"
         options={{
-          headerShown: false,
+          headerLargeTitle: true,
+          title: t('common.appName'),
+          headerTransparent: false,
+          headerShadowVisible: false,
+          headerStyle: {
+            backgroundColor,
+          },
+          headerLargeTitleStyle: {
+            color: color.primary,
+          },
+          contentStyle: {
+            backgroundColor,
+          },
         }}
         component={HomeScreen}
       />
@@ -43,6 +70,12 @@ const AppStack = observer(function AppStack() {
         options={{
           presentation: 'modal',
           title: t('settingsScreen.title'),
+          headerStyle: {
+            backgroundColor,
+          },
+          contentStyle: {
+            backgroundColor,
+          },
         }}
       />
 
@@ -52,6 +85,7 @@ const AppStack = observer(function AppStack() {
         options={{
           headerShown: false,
           animation: 'fade',
+          gestureEnabled: false,
         }}
       />
     </Stack.Navigator>

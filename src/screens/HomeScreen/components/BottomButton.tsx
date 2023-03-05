@@ -25,7 +25,7 @@ export const BottomButton = observer((props: BottomButtonProps) => {
     <TouchableOpacity style={[$container, props.style]} activeOpacity={0.5} onPress={props.onPress}>
       <VibrancyView
         style={StyleSheet.absoluteFill}
-        blurType={isDark ? 'ultraThinMaterial' : 'ultraThinMaterialLight'}
+        blurType={isDark ? 'chromeMaterialDark' : 'chromeMaterialLight'}
         blurAmount={50}
       />
       <SFSymbol name={props.iconName} size={24} color={PlatformColor('systemGray')} />

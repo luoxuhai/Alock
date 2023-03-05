@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement, useCallback, useMemo, useState } from 'react';
 import {
   StyleProp,
   TextStyle,
@@ -10,13 +10,14 @@ import {
   Text,
   TextProps,
   PlatformColor,
+  GestureResponderEvent,
+  Pressable,
+  useColorScheme,
 } from 'react-native';
 import { observer } from 'mobx-react-lite';
 import Animated, { FadeIn } from 'react-native-reanimated';
 import { human } from 'react-native-typography';
-
 import { SFSymbol } from 'react-native-sfsymbols';
-import { useColorScheme } from 'react-native';
 
 export interface ListCellProps extends TouchableHighlightProps {
   topSeparator?: boolean;
@@ -27,7 +28,9 @@ export interface ListCellProps extends TouchableHighlightProps {
   containerStyle?: StyleProp<ViewStyle>;
   style?: StyleProp<ViewStyle>;
   rightIcon?: ReactElement | null;
+  leftIcon?: ReactElement | null;
   visible?: boolean;
+  noTouchableHighlight?: boolean;
   RightAccessory?: ReactElement | string;
 }
 
@@ -38,11 +41,13 @@ export function ListCell(props: ListCellProps) {
     bottomSeparator = true,
     children,
     RightAccessory,
+    leftIcon,
     rightIcon,
     style,
     text,
     textStyle,
     visible = true,
+    noTouchableHighlight = false,
     ...touchableOpacityProps
   } = props;
   const isDark = useColorScheme() === 'dark';
@@ -66,24 +71,39 @@ export function ListCell(props: ListCellProps) {
       },
   ];
 
-  return visible ? (
-    <AnimatedTouchableHighlight
+  const onPressIn = useCallback((event: GestureResponderEvent) => {
+    setIsPressIn(true);
+    touchableOpacityProps.onPressIn?.(event);
+  }, []);
+
+  const onPressOut = useCallback((event: GestureResponderEvent) => {
+    setIsPressIn(false);
+    touchableOpacityProps.onPressOut?.(event);
+  }, []);
+
+  if (!visible) {
+    return null;
+  }
+
+  const PressableComponent = useMemo(
+    () => (noTouchableHighlight ? Pressable : AnimatedTouchableHighlight),
+    [noTouchableHighlight],
+  );
+
+  return (
+    <PressableComponent
       {...touchableOpacityProps}
       entering={FadeIn.duration(150)}
       style={$containerStyles}
-      underlayColor={PlatformColor('systemGray5')}
-      onPressIn={(event) => {
-        setIsPressIn(true);
-        touchableOpacityProps.onPressIn?.(event);
-      }}
-      onPressOut={(event) => {
-        setIsPressIn(false);
-        touchableOpacityProps.onPressOut?.(event);
-      }}
+      underlayColor={PlatformColor(isDark ? 'systemGray4' : 'systemGray5')}
+      onPressIn={onPressIn}
+      onPressOut={onPressOut}
     >
       <>
         {children || (
           <>
+            {leftIcon ? <LeftIconWrapper>{leftIcon}</LeftIconWrapper> : null}
+
             <View style={$contentStyles}>
               <Text
                 style={[
@@ -110,10 +130,7 @@ export function ListCell(props: ListCellProps) {
                 {rightIcon !== null &&
                   (rightIcon || (
                     <SFSymbol
-                      style={{
-                        width: 18,
-                        height: 18,
-                      }}
+                      style={$rightIcon}
                       name="chevron.right"
                       weight="medium"
                       color={PlatformColor('opaqueSeparator')}
@@ -124,13 +141,17 @@ export function ListCell(props: ListCellProps) {
           </>
         )}
       </>
-    </AnimatedTouchableHighlight>
-  ) : null;
+    </PressableComponent>
+  );
 }
 
 const ExtraText = observer(({ text }: { text: string }) => {
   return <Text style={[human.subhead, { color: PlatformColor('secondaryLabel') }]}>{text}</Text>;
 });
+
+function LeftIconWrapper({ children }: { children: React.ReactNode }) {
+  return <View style={$leftIconWrapper}>{children}</View>;
+}
 
 const $container: ViewStyle = {
   flexDirection: 'row',
@@ -162,4 +183,13 @@ const $rightContent: ViewStyle = {
 
 const $rightAccessory: ViewStyle = {
   marginRight: 4,
+};
+
+const $leftIconWrapper: ViewStyle = {
+  marginLeft: 12,
+};
+
+const $rightIcon: ViewStyle = {
+  width: 18,
+  height: 18,
 };

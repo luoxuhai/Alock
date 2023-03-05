@@ -7,7 +7,7 @@ interface FamilyActivityPickerProps {
   headerText?: string;
   footerText?: string;
   style?: ViewStyle;
-  onActivityChange?: (appTokensCount: number) => void;
+  onActivityChange: (appTokensCount: number) => void;
 }
 
 const Component = requireNativeComponent(ComponentName);

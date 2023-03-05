@@ -1,2 +1,2 @@
-CFBundleDisplayName = "App Locker";
-NSFaceIDUsageDescription = "The app will access your face ID permission when you use the face unlock function, in order to unlock quickly";
+CFBundleDisplayName = "Alock";
+NSFaceIDUsageDescription = "The App will access your face ID permission when you use the face unlock function, in order to unlock quickly";

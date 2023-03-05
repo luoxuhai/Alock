@@ -1,10 +1,8 @@
-import { Share, View, ViewStyle } from 'react-native';
+import { View, ViewStyle } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { i18n, SupportedLanguage } from '@/locales';
 import { BottomButton } from './BottomButton';
 import { Device } from '@/utils';
-import Config from '@/config';
 
 interface BottomActionBarProps {
   onPressSettings: () => void;
@@ -19,17 +17,6 @@ export function BottomActionBar(props: BottomActionBarProps) {
         iconName="gearshape"
         onPress={() => {
           props.onPressSettings();
-        }}
-      />
-      <BottomButton
-        iconName="square.and.arrow.up"
-        onPress={() => {
-          Share.share({
-            url:
-              i18n.language === SupportedLanguage.ZH
-                ? Config.appStoreUrl.cn
-                : Config.appStoreUrl.global,
-          });
         }}
       />
     </View>
