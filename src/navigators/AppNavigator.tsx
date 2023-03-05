@@ -8,6 +8,7 @@ import { t } from '@/locales';
 import { useMemo } from 'react';
 import { useStores } from '@/models';
 import { color } from '@/theme';
+import { navigationRef } from './helpers/navigationUtilities';
 
 export type AppStackParamList = {
   Home: undefined;
@@ -84,8 +85,10 @@ const AppStack = observer(function AppStack() {
         component={AppLockScreen}
         options={{
           headerShown: false,
-          animation: 'fade',
-          gestureEnabled: false,
+          presentation: 'fullScreenModal',
+          contentStyle: {
+            backgroundColor: PlatformColor('systemBackground'),
+          },
         }}
       />
     </Stack.Navigator>
@@ -103,7 +106,7 @@ const theme = {
 
 export const AppNavigator = observer(function AppNavigator(props: NavigationProps) {
   return (
-    <NavigationContainer {...props} theme={theme as unknown as Theme}>
+    <NavigationContainer ref={navigationRef} {...props} theme={theme as unknown as Theme}>
       <AppStack />
     </NavigationContainer>
   );

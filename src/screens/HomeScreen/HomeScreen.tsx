@@ -1,8 +1,16 @@
 import { useCallback, useEffect, useState } from 'react';
-import { Alert, PlatformColor, Switch, TextStyle, Text, ViewStyle } from 'react-native';
+import {
+  Alert,
+  PlatformColor,
+  Switch,
+  TextStyle,
+  Text,
+  ViewStyle,
+  ActivityIndicator,
+} from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { observer } from 'mobx-react-lite';
-import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { AppStackParamList } from '@/navigators';
 import { t } from '@/locales';
@@ -18,24 +26,44 @@ import { useStores } from '@/models';
 import { color } from '@/theme';
 import { human } from 'react-native-typography';
 import { BottomButtonHeight } from './components/BottomButton';
+import { useAppState, useUpdateEffect } from '@/utils/hooks';
 
 export const HomeScreen = observer((props: NativeStackScreenProps<AppStackParamList, 'Home'>) => {
   const { settingsStore } = useStores();
   const [approved, setApproved] = useState(false);
-  const safeAreaInsets = useSafeAreaInsets();
+  const [loading, setLoading] = useState(false);
+  const appState = useAppState();
 
   useEffect(() => {
     if (!settingsStore.hideAppEnabled) {
       clearBlockedApplications();
     }
 
-    isApproved().then(async (v) => {
-      setApproved(v);
-      if (!v) {
-        alertPermission();
-      }
-    });
+    requestAuthorization().then(() => setApproved(true));
+
+    const timer = setTimeout(() => {
+      setLoading(true);
+    }, 200);
+
+    isApproved()
+      .then(setApproved)
+      .finally(() => {
+        clearTimeout(timer);
+        setLoading(false);
+      });
   }, []);
+
+  useEffect(() => {
+    if (appState === 'active') {
+      isApproved().then(setApproved);
+    }
+  }, [appState]);
+
+  useUpdateEffect(() => {
+    if (!approved) {
+      settingsStore.setHideAppEnabled(false);
+    }
+  }, [approved]);
 
   async function alertPermission() {
     settingsStore.setHideAppEnabled(false);
@@ -59,19 +87,15 @@ export const HomeScreen = observer((props: NativeStackScreenProps<AppStackParamL
   }
 
   const handleValueChange = useCallback(
-    (value: boolean) => {
-      if (approved) {
+    async (value: boolean) => {
+      if (await isApproved()) {
         settingsStore.setHideAppEnabled(value);
       } else {
         alertPermission();
       }
     },
-    [approved, alertPermission],
+    [alertPermission],
   );
-
-  const handleFamilyActivityPickerPress = useCallback(() => {
-    alertPermission();
-  }, [alertPermission]);
 
   return (
     <SafeAreaView style={[$container]} edges={['bottom', 'left', 'right']}>
@@ -87,7 +111,6 @@ export const HomeScreen = observer((props: NativeStackScreenProps<AppStackParamL
           RightAccessory={
             <Switch value={settingsStore.hideAppEnabled} onValueChange={handleValueChange} />
           }
-          bottomSeparator={false}
           rightIcon={null}
         />
         <ListCell
@@ -100,7 +123,9 @@ export const HomeScreen = observer((props: NativeStackScreenProps<AppStackParamL
         />
       </ListSection>
       <ListSection headerText={t('homeScreen.applicationPicker.title')} style={$appPickerSection}>
-        {approved ? (
+        {loading ? (
+          <ActivityIndicator />
+        ) : approved ? (
           <ListCell style={[$appPickerCell]}>
             <FamilyActivityPicker
               style={$familyActivityPicker}
@@ -115,7 +140,7 @@ export const HomeScreen = observer((props: NativeStackScreenProps<AppStackParamL
             }}
             rightIcon={null}
             bottomSeparator={false}
-            onPress={handleFamilyActivityPickerPress}
+            onPress={alertPermission}
           />
         )}
       </ListSection>

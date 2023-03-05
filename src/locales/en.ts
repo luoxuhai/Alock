@@ -18,28 +18,40 @@ const en: Translations = {
     appName: 'Alock',
   },
   homeScreen: {
-    hello: 'Hello!',
+    hideAppEnabled: 'Open Hide',
+    count: 'Number of Apps Selected',
     applicationPicker: {
-      title: '选择 App',
+      title: 'SELECT APP',
+      permission: {
+        title: 'Grant Permission',
+        message: 'Please grant screen time access restrictions to use this feature normally',
+        button: 'Grant Screen Time Permission',
+      },
     },
+  },
+  appLockScreen: {
+    unlockTip: 'App is locked, click the icon to unlock',
+    touchID: 'Touch ID',
+    faceID: 'Face ID',
   },
   settingsScreen: {
     title: 'Settings',
     version: 'Version',
-    connect: 'Contact the developer',
+    connect: 'Contact Developer',
     goodReview: 'Review',
     share: 'Share App',
     recommend: {
-      title: 'My More Apps',
+      title: 'MY MORE APPS',
       appName: 'Privacy Box',
       desc: 'Hide private pictures, videos and files',
     },
-    agreement: 'Agreement',
+    agreement: 'AGREEMENT',
     privacyPolicy: 'Privacy Policy',
     userAgreement: 'User Agreement',
     security: {
-      title: 'Security Settings',
-      lock: '{{type}} unlock',
+      title: 'SECURITY SETTINGS',
+      lock: 'Unlock with {{type}}',
+      tip: 'After opening, the App will automatically lock when it enters the background',
     },
     donate: {
       purchasing: 'Paying',
@@ -51,9 +63,6 @@ const en: Translations = {
     openSource: {
       title: 'The APP is open source, welcome to Star and PR 👉',
     },
-  },
-  applicationPickerScreen: {
-    title: 'Select Application',
   },
   permissionManager: {
     faceID: 'Face ID',

@@ -604,7 +604,7 @@ PODS:
     - React-Core
   - react-native-mail (6.1.1):
     - React-Core
-  - react-native-mmkv (2.7.0):
+  - react-native-mmkv (2.6.3):
     - MMKV (>= 1.2.13)
     - React-Core
   - react-native-overlay (0.1.0):
@@ -720,7 +720,7 @@ PODS:
     - React-Core
   - RNPermissions (3.6.1):
     - React-Core
-  - RNReanimated (3.0.0-rc.10):
+  - RNReanimated (3.0.1):
     - DoubleConversion
     - FBLazyVector
     - FBReactNativeSpec
@@ -969,7 +969,7 @@ SPEC CHECKSUMS:
   react-native-biometrics: 352e5a794bfffc46a0c86725ea7dc62deb085bdc
   react-native-blur: 50c9feabacbc5f49b61337ebc32192c6be7ec3c3
   react-native-mail: 8fdcd3aef007c33a6877a18eb4cf7447a1d4ce4a
-  react-native-mmkv: a2a40a0458bdbc9d43c4e7752ecfc5e3a87b66dd
+  react-native-mmkv: 2e5bf67513cc8deed86fcffe87e12b8cc250dfab
   react-native-overlay: bdb2b478ab48b5220a3ddf80ce4945f96439b517
   react-native-safe-area-context: 39c2d8be3328df5d437ac1700f4f3a4f75716acc
   react-native-sfsymbols: bd3a0d3eab185e80b571bae60753dcf5a0d57967
@@ -993,7 +993,7 @@ SPEC CHECKSUMS:
   RNInAppBrowser: e36d6935517101ccba0e875bac8ad7b0cb655364
   RNLocalize: 0df7970cfc60389f00eb62fd7c097dc75af3fb4f
   RNPermissions: dcdb7b99796bbeda6975a6e79ad519c41b251b1c
-  RNReanimated: fbc356493970e3acddc15586b1bccb5eab3ff1ec
+  RNReanimated: 42295301c43f974340a510ba18d5a2031c191c30
   RNScreens: 218801c16a2782546d30bd2026bb625c0302d70f
   SPAlert: 735da1f16a887e294719217572ce1f936d8c8782
   SPConfetti: 4ba720ff652d960f59c3e4eadee2c0c3ef6ce9a4

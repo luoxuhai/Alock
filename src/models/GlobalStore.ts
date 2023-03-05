@@ -4,10 +4,10 @@ import { Instance, SnapshotIn, SnapshotOut, types } from 'mobx-state-tree';
 export const GlobalStoreModel = types
   .model('GlobalStore')
   .props({
-    isLocked: types.optional(types.boolean, false),
+    isLocked: types.optional(types.boolean, true),
     biometricsType: types.optional(
       types.enumeration<BiometryType>('BiometryType', Object.values(BiometryType)),
-      BiometryType.Unknown,
+      BiometryType.None,
     ),
   })
   .actions((self) => ({

@@ -16,7 +16,6 @@ const zh = {
     appName: 'Alock',
   },
   homeScreen: {
-    hello: '你好！',
     hideAppEnabled: '开启隐藏',
     count: '已选择的App个数',
     applicationPicker: {

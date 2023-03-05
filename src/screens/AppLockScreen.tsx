@@ -9,42 +9,47 @@ import { SFSymbol } from 'react-native-sfsymbols';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useStores } from '@/models';
 import { BiometryType, LocalAuth } from '@/utils';
-import { useCallback, useEffect } from 'react';
+import { useCallback, useRef } from 'react';
+import { useAppState, useBiometryType, useUpdateEffect } from '@/utils/hooks';
+
+interface UnlockAttempts {
+  count: number;
+}
 
 export const AppLockScreen = observer(
   (props: NativeStackScreenProps<AppStackParamList, 'AppLock'>) => {
     const { globalStore } = useStores();
+    const appState = useAppState();
+    const unlockTimer = useRef<number>();
+    const unlockAttempts = useRef<UnlockAttempts>({ count: 0 });
+    const biometryType = useBiometryType();
 
-    useEffect(() => {
-      LocalAuth.shared.getBiometryType().then((type) => {
-        if (type === BiometryType.Unknown) {
-          globalStore.unlock();
-          return;
-        }
-
-        setTimeout(() => {
+    useUpdateEffect(() => {
+      if (biometryType && globalStore.isLocked && appState === 'active') {
+        clearTimeout(unlockTimer.current!);
+        unlockTimer.current = setTimeout(() => {
+          if (unlockAttempts.current.count >= 1) {
+            return;
+          }
+          unlockAttempts.current.count++;
           handleRequestLocalAuth();
         }, 600);
-      });
-    }, []);
+      }
+    }, [appState, biometryType, globalStore.isLocked]);
 
-    useEffect(() => {
+    useUpdateEffect(() => {
       if (!globalStore.isLocked) {
-        if (props.navigation.canGoBack()) {
-          props.navigation.goBack();
-        } else {
-          props.navigation.replace('Home');
-        }
+        setTimeout(() => {
+          if (props.navigation.canGoBack()) {
+            props.navigation.goBack();
+          } else {
+            props.navigation.replace('Home');
+          }
+        }, 300);
       }
     }, [globalStore.isLocked]);
 
     const handleRequestLocalAuth = useCallback(async () => {
-      const type = await LocalAuth.shared.getBiometryType();
-      if (type === BiometryType.Unknown) {
-        globalStore.unlock();
-        return;
-      }
-
       const success = await LocalAuth.shared.requestAuth();
       if (success) {
         globalStore.unlock();
@@ -52,19 +57,19 @@ export const AppLockScreen = observer(
     }, []);
 
     return (
-      // <FullWindowOverlay style={$overlay}>
-      <SafeAreaView style={$container} edges={['bottom']}>
-        <TouchableOpacity onPress={handleRequestLocalAuth}>
-          {globalStore.biometricsType === BiometryType.FaceID ? (
-            <SFSymbol style={$biometrics} name="faceid" />
-          ) : (
-            <SFSymbol style={$biometrics} color={PlatformColor('systemRed')} name="touchid" />
-          )}
-        </TouchableOpacity>
+      <FullWindowOverlay style={$overlay}>
+        <SafeAreaView style={$container} edges={['bottom']}>
+          <TouchableOpacity onPress={handleRequestLocalAuth}>
+            {globalStore.biometricsType === BiometryType.FaceID ? (
+              <SFSymbol style={$biometrics} name="faceid" />
+            ) : (
+              <SFSymbol style={$biometrics} color={PlatformColor('systemRed')} name="touchid" />
+            )}
+          </TouchableOpacity>
 
-        <Text style={$text}>{t('appLockScreen.unlockTip')}</Text>
-      </SafeAreaView>
-      // </FullWindowOverlay>
+          <Text style={$text}>{t('appLockScreen.unlockTip')}</Text>
+        </SafeAreaView>
+      </FullWindowOverlay>
     );
   },
 );

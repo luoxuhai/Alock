@@ -2,7 +2,7 @@ import ReactNativeBiometrics from 'react-native-biometrics';
 import { PermissionManager } from './PermissionManager';
 
 export enum BiometryType {
-  Unknown = 'Unknown',
+  None = '',
   TouchID = 'TouchID',
   FaceID = 'FaceID',
 }
@@ -10,22 +10,21 @@ export enum BiometryType {
 export class LocalAuth {
   public static shared = new LocalAuth();
 
-  private biometryType?: BiometryType;
+  private biometryType = BiometryType.None;
   private biometrics: ReactNativeBiometrics;
 
   constructor() {
-    this.biometrics = new ReactNativeBiometrics({ allowDeviceCredentials: false });
+    this.biometrics = new ReactNativeBiometrics();
   }
 
   public async getBiometryType() {
-    if (!this.biometryType) {
+    if (![BiometryType.FaceID, BiometryType.TouchID].includes(this.biometryType)) {
+      this.biometrics.allowDeviceCredentials = true;
       const { biometryType } = (await this.biometrics.isSensorAvailable()) ?? {};
-
-      console.log('biometryType', biometryType);
       this.biometryType = biometryType as BiometryType;
     }
 
-    return this.biometryType || BiometryType.Unknown;
+    return this.biometryType;
   }
 
   public async requestAuth() {
@@ -33,6 +32,7 @@ export class LocalAuth {
       return;
     }
 
+    this.biometrics.allowDeviceCredentials = false;
     const { success } = await this.biometrics.simplePrompt({
       promptMessage: 'Authenticate to continue',
     });

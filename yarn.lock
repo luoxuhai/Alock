@@ -6398,20 +6398,20 @@ react-native-mail@^6.1.1:
   resolved "https://registry.npmjs.org/react-native-mail/-/react-native-mail-6.1.1.tgz#f1b1f8034c84d2510a93e4a2a795f0db5a13595e"
   integrity sha512-pTs180wwyh7hN/iyTC9SfOX579U4YhDlHOLxi47IGvhPJENqO/QFdBq+wWKxyhNqdQuVSy+LoeIxLreWnIeYmg==
 
-react-native-mmkv@^2.7.0:
-  version "2.7.0"
-  resolved "https://registry.npmjs.org/react-native-mmkv/-/react-native-mmkv-2.7.0.tgz#27d7a64b59064edbdf15eef922c5f904a7e36893"
-  integrity sha512-T+i1bbLuevgX9lWfIinarxXK12B/xmH+uMQLsL0d5yi+bOEIup3i7CIjG2geoxteheE5ARCotMb+bTp/GBBxWw==
+react-native-mmkv@^2.6.3:
+  version "2.6.3"
+  resolved "https://registry.npmjs.org/react-native-mmkv/-/react-native-mmkv-2.6.3.tgz#6bfd1b3dd4b264c86e68adbaa9692f3388af2b5d"
+  integrity sha512-CkLAU5EX18eDw0Q+h6qEXPvynb+NVDu54cOY3h4h9VUhaaflfAmGWBJRQCBQz5M0VdnS8utjgJNryTAWKUTqpw==
 
 react-native-permissions@^3.6.1:
   version "3.6.1"
   resolved "https://registry.npmjs.org/react-native-permissions/-/react-native-permissions-3.6.1.tgz#73adcc1cef8cd57a9ef167b4507405f4ff5749c4"
   integrity sha512-fzPpPQXeD34inUccqtoResSwYubfrwUguP4qrVUUv8+KSMjYSaHGoS5HaIJLZHlN9gO+TvLJZ2L5ZljTsb6qnQ==
 
-react-native-reanimated@^3.0.0-rc.10:
-  version "3.0.0-rc.10"
-  resolved "https://registry.npmjs.org/react-native-reanimated/-/react-native-reanimated-3.0.0-rc.10.tgz#40e5b628759aa81f94317fd0301231292b4eacf5"
-  integrity sha512-0P2jSO+dXHRxSzqSxNp08VaUy89nqeUIvqBS0wlI8lsli8CJcqulL3pjNqTGzBkxXjt13mGdIzJv4u9lSjHPzg==
+react-native-reanimated@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.npmjs.org/react-native-reanimated/-/react-native-reanimated-3.0.1.tgz#e5b15b0b5d2e02eaecb7dbccc1fdcb379379a6ef"
+  integrity sha512-zesX0VwzqUjcD6aY+jlDLqZWMn/nUx8RfIRHUMEn0NzcFHXk3TnMkWL2K/gx4k6NOMhtaBAx866ShRtR+i1hgQ==
   dependencies:
     "@babel/plugin-transform-object-assign" "^7.16.7"
     "@babel/preset-typescript" "^7.16.7"

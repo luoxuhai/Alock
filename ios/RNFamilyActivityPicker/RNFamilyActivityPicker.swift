@@ -23,7 +23,7 @@ struct RNFamilyActivityPicker: View {
     var body: some View {
       Group {
         if #available(iOS 16.0, *) {
-          FamilyActivityPicker(headerText: self.props.headerText,footerText: self.props.footerText, selection: $selection).padding(.vertical, -24)
+          FamilyActivityPicker(headerText: self.props.headerText,footerText: self.props.footerText, selection: $selection).padding(.vertical, -26)
         } else {
           FamilyActivityPicker(selection: $selection)
         }
