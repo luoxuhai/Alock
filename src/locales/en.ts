@@ -18,7 +18,8 @@ const en: Translations = {
     appName: 'Alock',
   },
   homeScreen: {
-    hideAppEnabled: 'Open Hide',
+    hideAppEnabled: 'Hide Apps',
+    lockAppEnabled: 'Lock Apps',
     count: 'Number of Apps Selected',
     applicationPicker: {
       title: 'SELECT APP',

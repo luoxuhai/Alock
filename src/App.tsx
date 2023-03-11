@@ -6,7 +6,7 @@ import { observer } from 'mobx-react-lite';
 
 import { AppNavigator, RootNavigation } from './navigators';
 import { useInitialRootStore, useStores } from '@/models';
-import { getBlockedApplicationsCount } from './lib/ScreenTime';
+import { getSelectedApplicationsCount } from './lib/ScreenTime';
 import { LocalAuth } from './utils';
 import { useAppState, useUpdateEffect } from './utils/hooks';
 
@@ -18,7 +18,7 @@ const App = observer(() => {
 
   useEffect(() => {
     LocalAuth.shared.getBiometryType().then(globalStore.setBiometricsType);
-    getBlockedApplicationsCount().then(settingsStore.setSelectedAppCount);
+    getSelectedApplicationsCount().then(settingsStore.setSelectedAppCount);
   }, []);
 
   useUpdateEffect(() => {

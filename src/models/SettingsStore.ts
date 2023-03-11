@@ -1,4 +1,9 @@
-import { clearBlockedApplications, setBlockedApplications } from '@/lib/ScreenTime';
+import {
+  clearBlockedApplications,
+  setBlockedApplications,
+  setShieldApplications,
+  clearShieldApplications,
+} from '@/lib/ScreenTime';
 import { Instance, SnapshotIn, SnapshotOut, types } from 'mobx-state-tree';
 
 export const SettingsStoreModel = types
@@ -7,6 +12,7 @@ export const SettingsStoreModel = types
     appLockEnabled: types.optional(types.boolean, false),
     selectedAppCount: types.optional(types.number, 0),
     hideAppEnabled: types.optional(types.boolean, false),
+    lockAppEnabled: types.optional(types.boolean, false),
   })
   .actions((self) => ({
     setAppLockEnabled: (enabled: boolean) => {
@@ -17,6 +23,9 @@ export const SettingsStoreModel = types
       self.selectedAppCount = count;
       if (self.hideAppEnabled) {
         setBlockedApplications();
+      }
+      if (self.lockAppEnabled) {
+        setShieldApplications();
       }
 
       if (count === 0) {
@@ -31,6 +40,15 @@ export const SettingsStoreModel = types
         clearBlockedApplications();
       }
       self.hideAppEnabled = enabled;
+    },
+
+    setLockAppEnabled: (enabled: boolean) => {
+      if (enabled) {
+        setShieldApplications();
+      } else {
+        clearShieldApplications();
+      }
+      self.lockAppEnabled = enabled;
     },
   }));
 

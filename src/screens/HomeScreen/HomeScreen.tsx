@@ -86,10 +86,21 @@ export const HomeScreen = observer((props: NativeStackScreenProps<AppStackParamL
     }
   }
 
-  const handleValueChange = useCallback(
+  const handleHideAppChange = useCallback(
     async (value: boolean) => {
       if (await isApproved()) {
         settingsStore.setHideAppEnabled(value);
+      } else {
+        alertPermission();
+      }
+    },
+    [alertPermission],
+  );
+
+  const handleLockAppChange = useCallback(
+    async (value: boolean) => {
+      if (await isApproved()) {
+        settingsStore.setLockAppEnabled(value);
       } else {
         alertPermission();
       }
@@ -109,7 +120,17 @@ export const HomeScreen = observer((props: NativeStackScreenProps<AppStackParamL
             />
           }
           RightAccessory={
-            <Switch value={settingsStore.hideAppEnabled} onValueChange={handleValueChange} />
+            <Switch value={settingsStore.hideAppEnabled} onValueChange={handleHideAppChange} />
+          }
+          rightIcon={null}
+        />
+        <ListCell
+          text={t('homeScreen.lockAppEnabled')}
+          leftIcon={
+            <SettingsIcon systemName="lock" backgroundColor={PlatformColor('systemOrange')} />
+          }
+          RightAccessory={
+            <Switch value={settingsStore.lockAppEnabled} onValueChange={handleLockAppChange} />
           }
           rightIcon={null}
         />

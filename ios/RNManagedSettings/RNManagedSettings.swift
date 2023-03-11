@@ -38,7 +38,7 @@ class RNManagedSettings: NSObject {
   func clearBlockedApplications(resolve: RCTPromiseResolveBlock,reject: RCTPromiseRejectBlock) -> Void {
     (self.store as! ManagedSettingsStore).application.blockedApplications?.removeAll()
       resolve("ok");
-    }
+   }
 
   @objc(requestAuthorization:withRejecter:)
     func requestAuthorization(resolve:@escaping RCTPromiseResolveBlock,reject:@escaping RCTPromiseRejectBlock) -> Void {
@@ -56,11 +56,43 @@ class RNManagedSettings: NSObject {
         reject("ERROR_requestAuthorization", nil, nil)
       }
   }
+  
+  @available(iOS 15.0, *)
+  @objc(setShieldApplications:withRejecter:)
+  func setShieldApplications(resolve: RCTPromiseResolveBlock,reject: RCTPromiseRejectBlock) -> Void {
+    if let object = UserDefaults.standard.object(forKey: SelectedAppTokensKey) as? Data {
+      if let appTokens = try? self.decoder.decode(Set<ApplicationToken>.self, from: object) {
+        var applicationTokens = Set<ApplicationToken>();
+        for token in appTokens {
+          applicationTokens.insert(token)
+        }
+        (self.store as! ManagedSettingsStore).shield.applications = applicationTokens
+      }
+      resolve("ok");
+    }
+
+    reject("error", nil, nil)
+  }
+  
+  @available(iOS 15.0, *)
+  @objc(clearShieldApplications:withRejecter:)
+  func clearShieldApplications(resolve: RCTPromiseResolveBlock,reject: RCTPromiseRejectBlock) -> Void {
+    (self.store as! ManagedSettingsStore).shield.applications?.removeAll()
+      resolve("ok");
+   }
 
   @available(iOS 15.0, *)
-  @objc(getBlockedApplicationsCount:withRejecter:)
-    func getBlockedApplicationsCount(resolve:@escaping RCTPromiseResolveBlock,reject:@escaping RCTPromiseRejectBlock) -> Void {
-      resolve((self.store as! ManagedSettingsStore).application.blockedApplications?.count ?? 0);
+  @objc(getSelectedApplicationsCount:withRejecter:)
+    func getSelectedApplicationsCount(resolve:@escaping RCTPromiseResolveBlock,reject:@escaping RCTPromiseRejectBlock) -> Void {
+      if let object = UserDefaults.standard.object(forKey: SelectedAppTokensKey) as? Data {
+        if let appTokens = try? self.decoder.decode(Set<ApplicationToken>.self, from: object) {
+          resolve(appTokens.count);
+        } else {
+          resolve(0);
+        }
+      } else {
+        resolve(0);
+      }
     }
 
   @available(iOS 15.0, *)
