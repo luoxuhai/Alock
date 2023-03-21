@@ -2,9 +2,10 @@
 
 <h4 align="center">Alock 是一款免费用于隐藏指定 App 的应用。使用 Alock 可以彻底地从 iPhone/iPad 上隐藏指定的 App，隐藏后的 App 在主屏幕、App资料库、搜索、系统设置中均不可见。最大程度保护您的隐私。 </h4>
 
-<p align="center">
-  <img src="screenshot.png" width="320" />
-</p>
+<div align="center">
+  <img src="https://user-images.githubusercontent.com/37284154/226497678-654a02ce-3731-4e83-b62c-65a78640f979.png" width="280px" />
+  <img src="https://user-images.githubusercontent.com/37284154/226497774-c7d1450e-81b1-434e-a8f2-8f8627c2a823.png" width="280px" />
+</div>
 
 **由 [react-native-boilerplate](https://github.com/luoxuhai/react-native-boilerplate) 提供支持。**
 
