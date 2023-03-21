@@ -10,6 +10,14 @@
 
 ## 安装
 
+### 使用爱思助手
+
+1. 下载 ipa 安装包：<https://github.com/luoxuhai/Alock/releases/tag/v1.0.1>
+2. 下载爱思助手：<https://www.i4.cn/>
+3. 使用爱思助手安装应用：<https://m.i4.cn/article/14666.html>
+
+### 已有开发环境
+
 ```bash
 cd Alcok
 
