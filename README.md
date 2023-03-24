@@ -13,11 +13,15 @@
 
 ### 使用爱思助手
 
+> 无法安装参考：https://github.com/luoxuhai/Alock/issues/5
+
 1. 下载 ipa 安装包：<https://github.com/luoxuhai/Alock/releases/tag/v1.0.1>
 2. 下载爱思助手：<https://www.i4.cn/>
 3. 使用爱思助手安装应用：<https://m.i4.cn/article/14666.html>
 
-### 已有开发环境
+### React Native 开发环境
+
+> 参考：https://reactnative.cn/docs/running-on-device
 
 ```bash
 cd Alcok
@@ -44,7 +48,7 @@ npm run ios
 
 ## 问题与反馈
 
-[![Github 讨论](https://img.shields.io/badge/Github-000000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/luoxuhai/NightVision/discussions )
+[![Github 讨论](https://img.shields.io/badge/Github-000000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/luoxuhai/Alock/issues)
 
 ## 贡献
 
